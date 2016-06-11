@@ -76,8 +76,8 @@ export default class JobList extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      activeJobs: this.props.activeJobs,
-      toDoJobs: this.props.toDoJobs
+      activeJobs: nextProps.activeJobs,
+      toDoJobs: nextProps.toDoJobs
     })
   }
 
