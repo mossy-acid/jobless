@@ -51,10 +51,10 @@ li button {
   float: right;
 }
 
-.handle {
-  padding: 3px;
-  border-radius: 5px;
-  border: 1px solid black;
+.drag-icon {
+  width: 35px;
+  height: 35px;
+  margin-right: 15px;
 }
 .handle:hover {
   color: white;
@@ -67,4 +67,17 @@ li button {
 
 button.inline {
   display: inline;
+}
+
+.view-job {
+  background-color: white;
+  border: 1px solid #337ab7;
+  margin-left: 7px;
+  border-radius: 4px;
+}
+
+h2.job-depot {
+  color: black;
+  font-family: inherit;
+  font-weight: 500;
 }

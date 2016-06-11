@@ -88,8 +88,10 @@ export default class Dashboard extends React.Component {
 
     return (
       <div className="dashboard">
-        <Link to='/search' ><button className="top-btn">Search For Jobs</button></Link>
-        <Link to='/calendar' ><button className="top-btn">Calendar</button></Link>
+        <div className="move-buttons">
+          <Link to='/search' ><button className="top-btn">Search For Jobs</button></Link>
+          <Link to='/calendar' ><button className="top-btn">Calendar</button></Link>
+        </div>
 
       {/*------------Add New Position Modal-----------------*/}
         <Modal isOpen={this.state.open} onRequestClose={this.closeModalAdd}>
@@ -125,7 +127,7 @@ export default class Dashboard extends React.Component {
                     <span className="glyphicon glyphicon-plus" aria-hidden="true" onClick={this.openModalAdd}></span>
                   </button>
                 </h2>
-                <JobList activeJobs={this.activeApplications} toDoJobs={this.toDoApplications}/>
+                <JobList methods={this.methods} activeJobs={this.activeApplications} toDoJobs={this.toDoApplications}/>
               </div>
             </div>
 

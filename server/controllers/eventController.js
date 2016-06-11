@@ -14,6 +14,7 @@ module.exports = {
   post: (req, res) => {
     Event.post(req.body, (err, data) => {
       if (err) throw err;
+      console.log('MEMEMEMME',req.user);
 
       // schedule email reminder for user
       let eventStart = data.dataValues.start;

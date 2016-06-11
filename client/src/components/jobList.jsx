@@ -3,20 +3,20 @@ import JobListEntry from './JobListEntry.jsx';
 import {SortableContainer, SortableElement, SortableHandle, arrayMove} from 'react-sortable-hoc';
 import { browserHistory } from 'react-router';
 
-const DragHandle = SortableHandle(() => <span className="handle">::</span>); 
+const DragHandle = SortableHandle(() => <img src="https://cdn1.iconfinder.com/data/icons/navigation-and-ui-menu/32/hamburger_menu_lines_options_setup-128.png" className="drag-icon"/>); 
 
 const SortableItem = SortableElement(({job, index, goToJobView}) => {
   // return (<JobListEntry key={job.id} job={job} />)
  if (job.complete) {
    return (
     <li className='li-job complete'>
-      <DragHandle /> {job.company} - <a href={job.jobURL}>{job.title}</a> <button className='inline pull-right' onClick={goToJobView.bind(null,job)}>View Job</button>
+      <DragHandle /> {job.company} - <a href={job.jobURL}>{job.title}</a> <button className='view-job inline pull-right' onClick={goToJobView.bind(null,job)}>View Job</button>
     </li>
    )
  } else {
    return (
      <li className='li-job'>
-      <DragHandle /> {job.company} - <a href={job.jobURL}>{job.title}</a> <button className='inline pull-right' onClick={goToJobView.bind(null,job)}>View Job</button>
+      <DragHandle /> {job.company} - <a href={job.jobURL}>{job.title}</a> <button className='view-job inline pull-right' onClick={goToJobView.bind(null,job)}>View Job</button>
      </li>
    )
  }
@@ -37,7 +37,7 @@ const SortableList = SortableContainer(({activeJobs, toDoJobs, goToJobView}) => 
         }
         
           <a className="arrow-btn left" href="#202"><span className="icon fontawesome-angle-left"></span></a>
-          <h2 className="jobPosting-month block titular">Job Depot</h2>
+          <h2 className="jobPosting-month block titular job-depot">Job Depot</h2>
           <a className="arrow-btn right" href="#203"><span className="icon fontawesome-angle-right"></span></a>
 
         {
@@ -94,6 +94,8 @@ export default class JobList extends React.Component {
   constructor(props) {
     super(props);
 
+    this.methods = props.methods;
+
     this.state = {
       activeJobs: [],
       toDoJobs: []
@@ -135,6 +137,8 @@ export default class JobList extends React.Component {
       //if moving activeJob to toDoJob
       } else {
         let jobToMove = newActiveJobs[oldIndex];
+        // jobToMove.apply = false;
+        // this.methods.putJob(jobToMove);
         newToDoJobs.splice(newIndex - adjustment, 0, jobToMove)
         newActiveJobs.splice(oldIndex, 1);
       }
@@ -147,6 +151,8 @@ export default class JobList extends React.Component {
       //if moving toDoJob to activeJob
       } else {
         let jobToMove = newToDoJobs[oldIndex - adjustment];
+        // jobToMove.apply = true;
+        // this.methods.putJob(jobToMove);
         newActiveJobs.splice(newIndex, 0, jobToMove);
         newToDoJobs.splice(oldIndex - adjustment, 1);
       }
