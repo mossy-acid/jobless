@@ -1,44 +1,48 @@
 import React from 'react';
 import JobListEntry from './JobListEntry.jsx';
-import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+import {SortableContainer, SortableElement, SortableHandle, arrayMove} from 'react-sortable-hoc';
+import { browserHistory } from 'react-router';
 
-const SortableItem = SortableElement(({job, index}) => {
+const DragHandle = SortableHandle(() => <span className="handle">::</span>); 
+
+const SortableItem = SortableElement(({job, index, goToJobView}) => {
   // return (<JobListEntry key={job.id} job={job} />)
  if (job.complete) {
    return (
-     <li className='li-job complete'>
-       <p className='li-company'>{job.company}</p>
-       <p className='li-position'><a href={job.jobURL}>{job.title}</a></p>
-     </li>
+    <li className='li-job complete'>
+      <DragHandle /> {job.company} - <a href={job.jobURL}>{job.title}</a> <button className='inline pull-right' onClick={goToJobView.bind(null,job)}>View Job</button>
+    </li>
    )
  } else {
    return (
      <li className='li-job'>
-       <p className='li-company'>{job.company}</p>
-       <p className='li-position'><a href={job.jobURL}>{job.title}</a></p>
+      <DragHandle /> {job.company} - <a href={job.jobURL}>{job.title}</a> <button className='inline pull-right' onClick={goToJobView.bind(null,job)}>View Job</button>
      </li>
    )
  }
 });
 
-const SortableList = SortableContainer(({activeJobs, toDoJobs}) => {
+const SortableList = SortableContainer(({activeJobs, toDoJobs, goToJobView}) => {
+  console.log('!!!!!!!!!CHANGED')
   // console.log('!!!!!', activeJobs.map(job => job.company));
   let adjustment = activeJobs.length;
   return (
     <div>
-      <ul>
+      <ul className='ul-job'>
         {
           activeJobs.map( (job, index) => {
-            return (<SortableItem key={`job-${index}`} index={index} job={job} />)
+            return (<SortableItem key={`job-${index}`} index={index} job={job} goToJobView={goToJobView}/>) 
             // return <JobListEntry key={`job-${index}`} job={job} index={index} />
           })
         }
-      </ul>
-      <div>!!-----------------------------!!</div>
-      <ul>
+        
+          <a className="arrow-btn left" href="#202"><span className="icon fontawesome-angle-left"></span></a>
+          <h2 className="jobPosting-month block titular">Job Depot</h2>
+          <a className="arrow-btn right" href="#203"><span className="icon fontawesome-angle-right"></span></a>
+
         {
           toDoJobs.map( (job, index) => {
-            return (<SortableItem key={`job-${index+adjustment}`} index={index+adjustment} job={job} />)
+            return (<SortableItem key={`job-${index+adjustment}`} index={index+adjustment} job={job} goToJobView={goToJobView}/>) 
             // return <JobListEntry key={`job-${index}`} job={job} index={index} />
           })
         }
@@ -86,7 +90,7 @@ const SortableList = SortableContainer(({activeJobs, toDoJobs}) => {
 
 
 
-export default class JobList extends React.Component {
+export default class JobList extends React.Component {  
   constructor(props) {
     super(props);
 
@@ -156,13 +160,21 @@ export default class JobList extends React.Component {
     // console.log('toDo: ', newToDoJobs.map(job => job.company))
   }
 
+  goToJobView(job) {
+    console.log('clicked!');
+    browserHistory.push(`/jobView?id=${job.id}`);
+  }
+
   render() {
     return (
       <SortableList toDoJobs={this.state.toDoJobs}
                     activeJobs={this.state.activeJobs}
+                    goToJobView={this.goToJobView.bind(this)}
                     // onSortStart={this.onSortStart.bind(this)}
                     onSortEnd={this.onSortEnd.bind(this)}
                     // transitionDuration={0}
+                    useDragHandle={true}
+                    lockAxis='y'
                     />
     )
   }

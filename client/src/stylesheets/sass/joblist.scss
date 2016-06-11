@@ -34,10 +34,37 @@ tr {
   border-top: 1px solid #1f253d;
 }*/
 
-.li-job {
-  list-style: none;
+.ul-job, .li-job {
+  list-style-type: none;
+  list-style-position: inside;
   border: 1px;
   border-radius: 5px;
   margin: 5px;
+  padding: 0;
 }
 
+.li-job {
+  margin-bottom: 10px;  
+}
+
+li button {
+  float: right;
+}
+
+.handle {
+  padding: 3px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+.handle:hover {
+  color: white;
+  background: black;
+}
+
+.li-company, .li-position {
+  display: inline;
+}
+
+button.inline {
+  display: inline;
+}

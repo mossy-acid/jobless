@@ -131,25 +131,14 @@ export default class Dashboard extends React.Component {
 
             {/*------------Today's Appointments-----------------*/}
             <div className="col-xs-6 col-md-4 left-container container">
-              <div className="menu-box block">
-                <h2 className="titular">Today's Appointments<button type="button" className="btn btn-default btn-xs"></button></h2>
+
+              <div className="menu-box block"> 
+                <h2 className="titular">Today's Appointments</h2>
                   <ul className="menu-box-menu">
                     {events.map(event => <TodoListEntry key={event.id} data={event}/>)}
                   </ul>
               </div>
 
-            {/*------------Job Depot (Interests)-----------------*/}
-              <div className="jobPosting-month block">
-                <div className="arrow-btn-container">
-                  <a className="arrow-btn left" href="#202"><span className="icon fontawesome-angle-left"></span></a>
-                  <h2 className="titular">Job Depot</h2>
-                  <a className="arrow-btn right" href="#203"><span className="icon fontawesome-angle-right"></span></a>
-                </div>
-
-
-                {/*<JobList jobs={this.toDoApplications} />*/}
-
-              </div>
             </div>
           </div>
         </div>
