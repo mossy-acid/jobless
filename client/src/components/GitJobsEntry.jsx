@@ -53,7 +53,7 @@ export default class GitJobsEntry extends React.Component {
           }
           if (this.state.clicked) {
             return (
-              <img onClick={this.addToDB} className="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/131578-200.png"/>
+              <img className="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/131578-200.png"/>
             )
           }
         })()}
