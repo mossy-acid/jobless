@@ -8,10 +8,13 @@ export default class GitJobsEntry extends React.Component {
     this.addToDB = this.addToDB.bind(this);
     this.changeHoverTrue = this.changeHoverTrue.bind(this);
     this.changeHoverFalse = this.changeHoverFalse.bind(this);
+    this.changeHoverButtonTrue = this.changeHoverButtonTrue.bind(this);
+    this.changeHoverButtonFalse = this.changeHoverButtonFalse.bind(this);
     
 
     this.state = {
       hover: false,
+      hoverButton: false,
       clicked: false
     }
   }
@@ -39,6 +42,14 @@ export default class GitJobsEntry extends React.Component {
     this.setState({hover: false});
   }
 
+  changeHoverButtonTrue() {
+    this.setState({hoverButton: true});
+  }
+
+  changeHoverButtonFalse() {
+    this.setState({hoverButton: false});
+  }
+
 
    render() {
       return (
@@ -46,9 +57,15 @@ export default class GitJobsEntry extends React.Component {
         {(() => {
           if (this.state.hover) {
             if (!this.state.clicked) { 
-              return (
-                <img onClick={this.addToDB} className="add-icon" src="http://image000.flaticon.com/icons/svg/109/109691.svg"/>
-              )
+              if (this.state.hoverButton) {
+                return (
+                  <img onMouseLeave={this.changeHoverButtonFalse} onClick={this.addToDB} className="add-icon" src="http://image000.flaticon.com/icons/svg/109/109691.svg"/>
+                )
+              } else {
+                return (
+                  <img onMouseEnter={this.changeHoverButtonTrue} className="add-icon" src="http://image000.flaticon.com/icons/svg/52/52200.svg"/>
+                )
+              }
             } 
           }
           if (this.state.clicked) {
