@@ -31,9 +31,12 @@ bower_components
 server/db/config.js
 server/config/pusher_secret.js
 server/config/client_secret.js
+server/db/sampleconfig.js
 
 # Floobits
 .floo
 .floobit
 .floo
 .flooignore
+
+*.DS_Store

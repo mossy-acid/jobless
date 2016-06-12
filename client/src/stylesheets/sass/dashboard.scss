@@ -1,10 +1,10 @@
 body {
   background: #1f253d;
-
 }
 
 .navbar {
-  background: #9099b7;
+  /* background: #9099b7; */
+  background: #273a40;
 }
 
 .navbar-default .navbar-brand {
@@ -45,7 +45,7 @@ body {
   width: 36px;
   line-height: 22px;
   background: #50597b;
-  text-align: center;
+  text-align: left;
   border-radius: 15px;
   position: absolute;
   top: 15px;
@@ -56,8 +56,14 @@ body {
 
 .menu-box-menu li{
   height: 60px;
-  position: relative; 
+  position: relative;
   list-style-type: none;
+  text-align: left;
+  list-style-position: inside;
+  border: 1px;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 0;
 }
 
 .menu-box-menu {
@@ -68,18 +74,18 @@ body {
   line-height: 60px;
   display: block;
   margin: 2px 0;
-  border-bottom: 1px solid #1f253d;
+  /*border-bottom: 1px solid #1f253d;*/
   -webkit-transition: background .2s;
   transition: background .2s;
-  background: #394264;
+  /*background: #394264;*/
   border-radius: 5px;
   padding-left: 0;
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .menu-box-tab:hover {
   background: #50597b;
-  border-top: 1px solid #1f253d;
+  /*border-top: 1px solid #1f253d;*/
   text-decoration: none;
 }
 
@@ -145,12 +151,12 @@ h2 {
 
 .jobPosting td, .jobPosting th {
   width: 300px;
-  height: 38px; 
-  text-align: center;          
+  height: 38px;
+  text-align: center;
 }
 
 .arrow-btn-container {
-  padding-top: 180px; 
+  padding-top: 180px;
 }
 .jobPosting .days-week {
   color: #4fc4f6;
@@ -158,8 +164,19 @@ h2 {
   padding-left: 15px;
 }
 
-
 .btn {
   float: right;
   margin-top: 5px;
+}
+
+.complete {
+  background-color: #4D4A44;
+}
+.time {
+  padding-left: 35px;
+}
+.end-time {
+  margin-bottom: 20px;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
 }

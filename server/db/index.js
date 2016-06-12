@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const dbConfig = require('./sampleconfig');
+const dbConfig = require('./config');
 // Establish database connection
 const sequelize = new Sequelize(
   dbConfig.database,
@@ -36,12 +36,13 @@ const User = sequelize.define('user', {
 const Position = sequelize.define('position', {
   title: Sequelize.STRING,
   company: Sequelize.STRING,
-  description: Sequelize.STRING,
+  description: Sequelize.TEXT,
   complete: Sequelize.BOOLEAN,
   endDate: Sequelize.DATE,
   jobURL: Sequelize.STRING,
   apply: Sequelize.BOOLEAN,
   notes: Sequelize.STRING,
+  location: Sequelize.STRING,
 }, {
   freezeTableName: true,
 });

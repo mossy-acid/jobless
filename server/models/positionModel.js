@@ -19,6 +19,7 @@ module.exports = {
     }
   },
   post: (newPosition, cb) => {
+    console.log('position?', newPosition);
     db.Position.create(newPosition)
       .then((pos) => cb(null, pos))
       .catch(cb);

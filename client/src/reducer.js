@@ -14,10 +14,10 @@ export const debug = function(state = false, action) {
     case DEBUG_OFF:
       return false;
     default:
-      !state || console.log('ACTION DISPATCHED:',JSON.stringify(action));
+      // !state || console.log('ACTION DISPATCHED:',JSON.stringify(action));
       return state;
   }
-}
+};
 
 export const user = function(state={}, action) {
   switch(action.type) {
@@ -30,7 +30,7 @@ export const user = function(state={}, action) {
     default:
       return state
   }
-}
+};
 
 export const job = function(state={}, action) {
   switch(action.type) {
@@ -43,7 +43,7 @@ export const job = function(state={}, action) {
     default:
       return state;
   }
-}
+};
 
 export const jobList = function(state=[], action) {
   switch(action.type) {
@@ -54,7 +54,7 @@ export const jobList = function(state=[], action) {
     default:
       return state;
   }
-}
+};
 
 export const event = function(state={}, action) {
   switch(action.type) {
@@ -69,7 +69,7 @@ export const event = function(state={}, action) {
     default:
       return state;
   }
-}
+};
 
 export const session = function(state={}, action) {
   console.log('session get response invoked')
@@ -79,5 +79,5 @@ export const session = function(state={}, action) {
     default:
       return state;
   }
-}
+};
 
