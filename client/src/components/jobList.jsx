@@ -75,15 +75,11 @@ export default class JobList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('props received', nextProps)
     this.setState({
       activeJobs: nextProps.activeJobs,
       toDoJobs: nextProps.toDoJobs
     })
-  }
-
-  onSortStart({node, index}) {
-    console.log('NODE: ', node);
-    node = <tr><td>TEST</td></tr>
   }
 
   onSortEnd({oldIndex, newIndex}) {
@@ -100,13 +96,12 @@ export default class JobList extends React.Component {
       //if moving activeJob to toDoJob
       } else {
         let jobToMove = newActiveJobs[oldIndex];
+        newToDoJobs.splice(newIndex - adjustment, 0, jobToMove)
+        newActiveJobs.splice(oldIndex, 1);
 
         //update job in database
         jobToMove.apply = false;
         this.methods.putJob(jobToMove);
-
-        newToDoJobs.splice(newIndex - adjustment, 0, jobToMove)
-        newActiveJobs.splice(oldIndex, 1);
       }
 
     //if position grabbed is a to-do job
@@ -117,15 +112,15 @@ export default class JobList extends React.Component {
       //if moving toDoJob to activeJob
       } else {
         let jobToMove = newToDoJobs[oldIndex - adjustment];
+        newActiveJobs.splice(newIndex, 0, jobToMove);
+        newToDoJobs.splice(oldIndex - adjustment, 1);
 
         //update job in database
         jobToMove.apply = true;
         this.methods.putJob(jobToMove);
-
-        newActiveJobs.splice(newIndex, 0, jobToMove);
-        newToDoJobs.splice(oldIndex - adjustment, 1);
       }
     }
+    
     this.setState({
       activeJobs: newActiveJobs,
       toDoJobs: newToDoJobs
@@ -146,6 +141,7 @@ export default class JobList extends React.Component {
   }
 
   render() {
+    console.log(this.state.activeJobs);
     return (
       <SortableList toDoJobs={this.state.toDoJobs}
                     activeJobs={this.state.activeJobs}
